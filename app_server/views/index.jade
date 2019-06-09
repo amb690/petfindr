@@ -1,0 +1,51 @@
+extends layout
+
+include _includes/sharedHTMLfunctions
+
+block content
+  #banner.page-header
+    .row
+      .col-lg-12
+         center
+                h1= pageHeader.title
+                h3= pageHeader.strapline
+        form.form-horizontal(action="", method="post", role="form")
+          .form-group
+            input#name.form-control(name="description", value="", style="float:left; width:95%; margin-right:0px;")
+            &nbsp&nbsp
+            button.btn.btn-default(href="/sighting/find" class="glyphicon glyphicon-search" method="POST")
+  - if(sightings.length){
+    .row
+      .col-xs-12
+        .row.list-group
+          each sighting in sightings
+            .col-xs-15.list-group-item
+                .image(style="float:left")
+                  img(src=sighting.image_url alt="Image Title" style="height:180px;width:230px;")
+                center
+                  h4(style="text-align:center")
+                    p= sighting.description
+                center
+                   p= 'Nombre de contacto: ' + sighting.viewer_name
+                center
+                   p= 'Zona: ' + sighting.place
+                center
+                   p= 'Email de contacto: ' + sighting.email
+                center
+                   p= 'Telefono de contacto: ' + sighting.phone
+                center
+                   a.btn.btn-default(href="/sighting/edit/#{sighting._id}" class="glyphicon glyphicon-pencil")
+                   small &nbsp&nbsp;
+                   a.btn.btn-default(href="/delete/#{sighting._id}" class="glyphicon glyphicon-minus" onclick="return confirm('¿Desea borrar este avistamiento?');")
+                   small &nbsp&nbsp;
+                   a.btn.btn-default(href="/sighting/locate/#{sighting.place}" target="_blank" class="glyphicon glyphicon-screenshot")
+            br
+  - } else {
+     center
+       .alert(class="alert alert-info")
+        b
+          p= "No existen avistamientos de mascotas"
+  - }
+  center
+    a.btn.btn-default(href="/sighting/new" class="glyphicon glyphicon-plus")
+  br

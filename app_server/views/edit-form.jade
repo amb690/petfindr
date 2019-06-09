@@ -1,0 +1,39 @@
+extends layout
+
+block content
+  .row.page-header
+    .col-lg-13.col-md-offset-5
+      h1 Editar avistamiento
+  .row
+    .col-md-6.col-md-offset-3
+      form.form-horizontal(action="", method="post", role="form")
+        .form-group
+          label.col-sm-2.control-label(for="description") Descripción
+          .col-sm-10
+            - var text = sighting.description
+            textarea#sighting.form-control(name="description", rows="5", required)= text
+        .form-group
+          label.col-xs-10.col-sm-2.control-label(for="image_url") URL de imágen
+          .col-xs-12.col-sm-10
+            input#name.form-control(name="image_url", value="#{sighting.image_url}")
+        .form-group
+          label.col-xs-10.col-sm-2.control-label(for="place") Lugar
+          .col-xs-12.col-sm-10
+            input#name.form-control(name="place" required, value="#{sighting.place}")
+        .form-group
+          label.col-xs-10.col-sm-2.control-label(for="viewer_name", value="#{sighting.viewer_name}") Nombre
+          .col-xs-12.col-sm-10
+            input#name.form-control(name="viewer_name")
+        .form-group
+          label.col-xs-10.col-sm-2.control-label(for="phone") Teléfono
+          .col-xs-12.col-sm-10
+            input#name.form-control(name="phone", required, value="#{sighting.phone}")
+        .form-group
+          label.col-xs-10.col-sm-2.control-label(for="email") Email
+          .col-xs-12.col-sm-10
+            input#name.form-control(name="email", required, value="#{sighting.email}")
+        .col-lg-13.col-md-offset-5
+           button.btn.btn-default Editar avistamiento
+        br
+        br
+    .col-xs-12.col-md-4

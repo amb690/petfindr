@@ -1,0 +1,178 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "API REST de PetFindr\n",
+    "version": "1.0.0",
+    "title": "PetFindr REST API",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "amb690@inlumine.ual.es"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "tags": [
+    {
+      "name": "sighting",
+      "description": "Avistamientos de animales perdidos"
+    }
+  ],
+  "paths": {
+    "/sightings": {
+      "get": {
+        "tags": [
+          "sighting"
+        ],
+        "summary": "Obtener todos los avistamientos",
+        "operationId": "sightingsReadAll",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Operación correcta",
+            "schema": {
+              "$ref": "#/definitions/Sighting"
+            }
+          },
+          "404": {
+            "description": "Avistamientos no encontrados"
+          }
+        }
+      }
+    },
+    "/sightings/{id}": {
+      "get": {
+        "tags": [
+          "sighting"
+        ],
+        "summary": "Obtener avistamiento por id",
+        "operationId": "sightingsReadOne",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "El id del avistamiento a recuperar. Use 5cf4dc0f25650f1000e33604 para pruebas.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operación correcta",
+            "schema": {
+              "$ref": "#/definitions/Sighting"
+            }
+          },
+          "400": {
+            "description": "id inválido"
+          },
+          "404": {
+            "description": "Avistamiento no encontrado"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "sighting"
+        ],
+        "summary": "Avistamiento actualizado",
+        "description": "Actualizar avistamiento",
+        "operationId": "sightingsUpdateOne",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id del avistamiento a modificar",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "id inválido"
+          },
+          "404": {
+            "description": "Avistamiento no encontrado"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "sighting"
+        ],
+        "summary": "Eliminar avistamiento",
+        "description": "Eliminar avistamiento",
+        "operationId": "sightingsDeleteOne",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "El id del avistamiento a eliminar",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "id inválido"
+          },
+          "404": {
+            "description": "Avistamiento no encontrado"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Sighting": {
+      "type": "object",
+      "required": [
+        "description",
+        "place",
+        "email",
+        "phone"
+      ],
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "place": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "date": {
+          "type": "object"
+        }
+      },
+      "xml": {
+        "name": "Sighting"
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Más información sobre Swagger",
+    "url": "http://swagger.io"
+  },
+  "host": "localhost:3000",
+  "basePath": "/api"
+}

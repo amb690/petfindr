@@ -1,0 +1,15 @@
+create database petfindr;
+use petfindr;
+var myDate = new Date(2019, 06, 02, 14, 12);
+db.sigthings.insert(
+{
+	"_id" : ObjectId("5abe944733599b27439db885"),
+	"description" : "Perro visto en la zona del puerto de Almería",
+	"image_url" : "https://boygeniusreport.files.wordpress.com/2016/11/puppy-dog.jpg?quality=98&strip=all&w=782",
+	"place" : "Almería (Spain)",
+	"viewer_name" : "Alberto",
+	"phone" : "666666666",
+	"email" : "amb690@hotmail.com",
+	"date" : myDate
+}
+);
