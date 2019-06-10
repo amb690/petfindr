@@ -4,6 +4,7 @@ var apiOptions = {
   server: 'http://localhost:3000',
   mapServer: 'https://geocoder.api.here.com/6.2/geocode.json?'
 };
+var serverUrl = 'http://192.168.68.186:3000';
 
 var renderSightingsPage = function(req, res, responseBody) { 
   var message;
@@ -113,7 +114,7 @@ module.exports.doAddSighting = function(req, res){
 
   request(requestOption, function(err,response,body){
     if (response.statusCode === 201) {
-        res.redirect('http://localhost:3000');
+        res.redirect(serverUrl);
     }
   });
 }
@@ -153,7 +154,7 @@ module.exports.doEditSighting = function(req, res){
   };
 
   request(requestOption, function(err,response,body){
-    res.redirect('http://localhost:3000');
+    res.redirect(serverUrl);
   });
 }
 
@@ -171,7 +172,7 @@ module.exports.sightingDelete = function(req, res, next) {
     data = body;
   });
 
-  res.redirect('http://localhost:3000');
+  res.redirect(serverUrl);
 }
 
 module.exports.findSighting = function(req, res, next) { 
@@ -183,7 +184,7 @@ module.exports.findSighting = function(req, res, next) {
   }
   requestOption = { 
     url: apiOptions.server + path,
-    method: this.methd,
+    method: methd,
     json: {},
     qs: {}
   };
